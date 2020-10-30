@@ -1,4 +1,7 @@
-import { getBrower, unaccent } from './utils';
+import './polyfills';
+import { Utils } from './helpers/utils';
 
-console.log(unaccent('Tao là bố mày nè'));
-console.log(getBrower());
+export class MediumEditor {
+  utils = new Utils();
+  constructor(elemId: string, otps: any) {}
+}
