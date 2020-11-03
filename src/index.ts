@@ -1,34 +1,49 @@
 import './polyfills';
 import './extensions';
 import { Utils } from './helpers/utils';
-import { Constructor, Extension, ExtensionsNameSpace } from './models/extensions.model';
-
+import { Constructor, Extension, ExtensionsNamespace } from './models/extensions.model';
+import { DefaultConfig } from './config/default';
+import { MediumEditorOptions } from './models/MediumEditor.model';
 
 export class MediumEditor {
-  editor: HTMLElement | null;
+  editors: HTMLCollectionOf<Element>;
   utils = new Utils();
+  options: Partial<MediumEditorOptions>;
 
   extensions: Constructor<Extension>[] = [];
 
-  constructor(elemId: string, otps: any) {
-    this.editor = document.getElementById(elemId);
+  /**
+   *
+   * @param selector : HTML Class name
+   * @param otps : Medium Editor options
+   */
+  constructor(selector: string, otps: MediumEditorOptions) {
+    this.editors = document.getElementsByClassName(selector);
 
-    if (!this.editor) {
-      throw new Error(`Cannot find element with id ${elemId}`);
+    if (!this.editors.length) {
+      throw new Error(`Cannot find elements with classname ${selector}`);
     }
 
-    if (this.editor.tagName !== 'DIV') {
-      console.warn('We recommend editor container is a div');
-    }
+    this.options = otps;
 
-    this.loadExtensions();
-
+    // this.loadExtensions();
   }
 
-  loadExtensions(): void{
-    this.extensions = ExtensionsNameSpace.GetImplementations();
-    this.extensions.forEach(e => console.log(e));
+  get defaults(): Partial<MediumEditorOptions> {
+    return DefaultConfig;
   }
 
+  /**
+   * Initilize editor
+   */
+  init(): void {}
 
+  createElementsArray(selector: string): Element[] {
+    throw new Error('Not implemented!');
+  }
+
+  loadExtensions(): void {
+    this.extensions = ExtensionsNamespace.GetImplementations();
+    this.extensions.forEach((e) => e.prototype.init());
+  }
 }

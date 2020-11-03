@@ -1,7 +1,6 @@
 import { Browser } from '../models/browser.enum';
 
 export class Utils {
-
   isInternetExplorer(): boolean {
     return (
       navigator.appName === 'Microsoft Internet Explorer' ||
@@ -67,5 +66,14 @@ export class Utils {
     }
 
     return undefined;
+  }
+
+  /**
+   * Check parameter is a HTML element or not
+   * @param element : HTML element or selector
+   */
+  // https://github.com/jashkenas/underscore
+  isElement(obj: any): boolean {
+    return !!(obj && obj.nodeType === 1);
   }
 }

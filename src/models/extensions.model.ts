@@ -2,15 +2,17 @@ export interface Constructor<T> extends Partial<Extension> {
   new (...args: any[]): T;
   readonly prototype: T;
 }
-export namespace ExtensionsNameSpace {
+export namespace ExtensionsNamespace {
   const implementations: Constructor<Extension>[] = [];
   export function GetImplementations(): Constructor<Extension>[] {
     return implementations;
   }
   export function register(name?: string): any {
     return (constructor: Constructor<Extension>) => {
-      console.log(name);
-      console.log(constructor);
+      if (name) {
+        constructor.prototype.name = name;
+      }
+
       implementations.push(constructor);
       return constructor;
     };
@@ -28,10 +30,13 @@ export abstract class Extension {
   constructor(otps: any) {
     const { name, document } = otps;
     this.document = document;
+    this.init();
   }
 
   /**
    * Extension first function int
    */
-  init(): void {}
+  init(): void {
+    console.log(this.name);
+  }
 }

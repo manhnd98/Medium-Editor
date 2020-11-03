@@ -1,8 +1,7 @@
-import { Extension, ExtensionsNameSpace } from '../models/extensions.model';
+import { Extension, ExtensionsNamespace } from '../models/extensions.model';
 
-@ExtensionsNameSpace.register('CoreExtensionsName')
+@ExtensionsNamespace.register('CoreExtensionsName')
 export class CoreExtensions extends Extension {
-  name = 'CoreExtensions';
 
   constructor(otps: any) {
     super(otps);
