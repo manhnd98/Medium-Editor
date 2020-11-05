@@ -1,33 +1,30 @@
 import './polyfills';
-import './extensions';
 import { Utils } from './helpers/utils';
-import { Constructor, Extension, ExtensionsNamespace } from './models/extensions.model';
+import { Constructor, Extension, ExtensionsContainer } from './models/extensions.model';
 import { DefaultConfig } from './config/default';
-import { MediumEditorOptions, MediumEditorSelector } from './models/MediumEditor.model';
-import { Events } from './helpers/events';
+import { MediumEditorOptions, MediumEditorSelector } from './models/medium-editor.model';
+import { MediumEditorAttribute } from './models/editor-attribute.enum';
 
 export class MediumEditor {
   utils = new Utils();
   options: Partial<MediumEditorOptions>;
   extensions: Constructor<Extension>[] = [];
 
-  events = new Events();
-
   isActive: boolean | undefined = undefined;
 
   document: Document;
 
-  /**
-   * Editor container
-   */
+  // Editor elements
   elements: Element[] = [];
 
   /**
-   *
    * @param selector : HTML Class name
    * @param otps : Medium Editor options
    */
-  constructor(selector: MediumEditorSelector, otps: MediumEditorOptions) {
+  constructor(
+    selector: MediumEditorSelector,
+    otps: MediumEditorOptions
+  ) {
     this.document = document;
 
     this.options = otps;
@@ -57,18 +54,15 @@ export class MediumEditor {
     elements.forEach((element) => {
       // Initialize all new elements (we check that in those functions don't worry)
       // element = initElement.call(this, element, this.id);
-
       // // Add new elements to our internal elements array
       // this.elements.push(element);
-
       // // Trigger event so extensions can know when an element has been added
       // this.trigger(
       //     "addElement",
       //     { target: element, currentTarget: element },
       //     element
       // );
-  }, this);
-
+    }, this);
   }
 
   /**
@@ -107,8 +101,8 @@ export class MediumEditor {
       for (const el of elementsTemp) {
         if (
           this.utils.isElement(el) &&
-          !el.getAttribute('medium-editor-element') &&
-          !el.getAttribute('medium-editor-id')
+          !el.getAttribute(MediumEditorAttribute.MEDIUM_EDITOR_ELEMENT) &&
+          !el.getAttribute(MediumEditorAttribute.MEDIUM_EDITOR_ID)
         ) {
           elements.push(el);
         }
@@ -123,7 +117,7 @@ export class MediumEditor {
   }
 
   loadExtensions(): void {
-    this.extensions = ExtensionsNamespace.GetImplementations();
+    this.extensions = ExtensionsContainer.GetImplementations();
     this.extensions.forEach((e) => e.prototype.init());
   }
 }

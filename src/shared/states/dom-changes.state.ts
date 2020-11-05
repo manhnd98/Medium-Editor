@@ -1,4 +1,4 @@
-import { DOMChangesState } from '@medium-editor/models/DOMChangesState.model';
+import { DOMChangesState } from '@medium-editor/models/dom-change-state.model';
 import { BaseStateService } from '@medium-editor/shared/base-state.service';
 import { Observable } from 'rxjs';
 

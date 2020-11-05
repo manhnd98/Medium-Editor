@@ -2,7 +2,7 @@ export interface Constructor<T> extends Partial<Extension> {
   new (...args: any[]): T;
   readonly prototype: T;
 }
-export namespace ExtensionsNamespace {
+export namespace ExtensionsContainer {
   const implementations: Constructor<Extension>[] = [];
   export function GetImplementations(): Constructor<Extension>[] {
     return implementations;

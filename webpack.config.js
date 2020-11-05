@@ -28,7 +28,7 @@ module.exports = {
                 {
                   globalName: 'MediumEditor',
                   moduleLocalName: 'MediumEditor',
-                },
+                }
               ],
             },
           },
