@@ -7,10 +7,18 @@ export interface MediumEditorOptions {
   disableExtraSpaces: boolean;
   disableEditing: boolean;
   autoLink: boolean;
-  elementsContainer: boolean;
+  elementsContainer: HTMLElement;
   contentWindow: Window;
   ownerDocument: Document;
   targetBlank: boolean;
   extensions: object;
   spellcheck: boolean;
 }
+
+/**
+ * Editor selector can be
+ * Selector: '.editor' | '#editor'
+ * Collection of Element: document.getElementsByClassName('editor')
+ * Element: document.getElementById('editor')
+ */
+export type MediumEditorSelector = HTMLCollectionOf<Element> | HTMLElement | NodeListOf<Element> | string;

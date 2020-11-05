@@ -76,4 +76,22 @@ export class Utils {
   isElement(obj: any): boolean {
     return !!(obj && obj.nodeType === 1);
   }
+
+  /**
+   * https://stackoverflow.com/questions/7238177/how-to-detect-htmlcollection-nodelist-in-javascript
+   * 
+   * Check parameter is html nodelist or not
+   */
+  isNodeList(obj: any): boolean {
+    return NodeList.prototype.isPrototypeOf(obj);
+  }
+
+  /**
+   * https://stackoverflow.com/questions/7238177/how-to-detect-htmlcollection-nodelist-in-javascript
+   * 
+   * Check element is html collection or not
+   */
+  isHTMLCollection(obj: any): boolean {
+    return HTMLCollection.prototype.isPrototypeOf(obj);
+  }
 }

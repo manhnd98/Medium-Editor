@@ -7,7 +7,7 @@ export const DefaultConfig = {
   disableExtraSpaces: false,
   disableEditing: false,
   autoLink: false,
-  elementsContainer: false,
+  elementsContainer: document.body,
   contentWindow: window,
   ownerDocument: document,
   targetBlank: false,
