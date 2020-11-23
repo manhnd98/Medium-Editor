@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import './polyfills';
 import { Utils } from './helpers/utils';
 import { Constructor, Extension, ExtensionsContainer } from './models/extensions.model';
@@ -21,10 +22,7 @@ export class MediumEditor {
    * @param selector : HTML Class name
    * @param otps : Medium Editor options
    */
-  constructor(
-    selector: MediumEditorSelector,
-    otps: MediumEditorOptions
-  ) {
+  constructor(selector: MediumEditorSelector, otps: MediumEditorOptions) {
     this.document = document;
 
     this.options = otps;
