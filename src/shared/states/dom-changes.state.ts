@@ -1,6 +1,6 @@
-import { DOMChangesState } from '@medium-editor/models/dom-change-state.model';
-import { BaseStateService } from '@medium-editor/shared/base-state.service';
 import { Observable } from 'rxjs';
+import { BaseStateService } from '../base-state.service';
+import { DOMChangesState } from '../models/dom-change-state.model';
 
 function initializeState(): DOMChangesState {
   return {

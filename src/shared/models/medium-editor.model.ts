@@ -1,4 +1,4 @@
-export interface MediumEditorOptions {
+export interface IEditorOptions {
   activeButtonClass: string;
   buttonLabels: boolean;
   delay: number;
@@ -21,4 +21,17 @@ export interface MediumEditorOptions {
  * Collection of Element: document.getElementsByClassName('editor')
  * Element: document.getElementById('editor')
  */
-export type MediumEditorSelector = HTMLCollectionOf<Element> | HTMLElement | NodeListOf<Element> | string;
+export type IEditorSelector =
+  | HTMLCollectionOf<Element>
+  | HTMLElement
+  | NodeListOf<Element>
+  | string;
+
+export interface IMediumEditorOption {
+  selector: IEditorSelector;
+  otps: IEditorOptions;
+}
+
+export class EditorParam implements IMediumEditorOption {
+  constructor(public selector: IEditorSelector, public otps: IEditorOptions){}
+}

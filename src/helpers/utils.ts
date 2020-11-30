@@ -1,4 +1,4 @@
-import { Browser } from '../models/browser.enum';
+import { Browser } from '../shared/models/browser.model';
 
 export class Utils {
   isInternetExplorer(): boolean {
