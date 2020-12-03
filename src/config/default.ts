@@ -1,4 +1,6 @@
-export const DefaultConfig = {
+import { IEditorOptions } from 'src/shared/models/medium-editor.model';
+
+export const DefaultConfig: IEditorOptions = {
   activeButtonClass: 'medium-editor-button-active',
   buttonLabels: false,
   delay: 0,
@@ -11,6 +13,6 @@ export const DefaultConfig = {
   contentWindow: window,
   ownerDocument: document,
   targetBlank: false,
-  extensions: {},
+  extensions: [],
   spellcheck: false
 };

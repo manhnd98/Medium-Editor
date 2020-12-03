@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import './polyfills';
+import './extensions';
 import { autoInjectable, container, inject, injectable, InjectionToken } from 'tsyringe';
 import { Editor } from './main';
 
@@ -12,4 +13,5 @@ export class MediumEditor {
     container.register(EditorParam, { useValue: new EditorParam(selector, otps) });
     this.editor = container.resolve(Editor);
   }
+
 }

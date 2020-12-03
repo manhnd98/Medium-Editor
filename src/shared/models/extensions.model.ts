@@ -3,9 +3,9 @@ export interface Constructor<T> extends Partial<Extension> {
   readonly prototype: T;
 }
 export namespace ExtensionsContainer {
-  const implementations: Constructor<Extension>[] = [];
-  export function GetImplementations(): Constructor<Extension>[] {
-    return implementations;
+  const extensions: Constructor<Extension>[] = [];
+  export function getAllExtensions(): Constructor<Extension>[] {
+    return extensions;
   }
   export function register(name?: string): any {
     return (constructor: Constructor<Extension>) => {
@@ -13,7 +13,7 @@ export namespace ExtensionsContainer {
         constructor.prototype.name = name;
       }
 
-      implementations.push(constructor);
+      extensions.push(constructor);
       return constructor;
     };
   }

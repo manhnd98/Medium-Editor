@@ -1,6 +1,6 @@
 import { injectable, singleton } from 'tsyringe';
 
-@singleton()
+@injectable()
 export class Events {
   randomNumber: number;
   constructor() {

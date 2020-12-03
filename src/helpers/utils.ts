@@ -1,6 +1,8 @@
 import { Browser } from '../shared/models/browser.model';
 
 export class Utils {
+  constructor() {}
+
   isInternetExplorer(): boolean {
     return (
       navigator.appName === 'Microsoft Internet Explorer' ||
@@ -93,5 +95,31 @@ export class Utils {
    */
   isHTMLCollection(obj: any): boolean {
     return HTMLCollection.prototype.isPrototypeOf(obj);
+  }
+
+  defaults(dest: any, source1: any, source2: any): any {
+    const args = [false].concat(Array.prototype.slice.call(arguments));
+    return this.copyInto.apply(this, args as any);
+  }
+
+  copyInto(overwrite: any, dest: any): any {
+    const sources = Array.prototype.slice.call(arguments, 2);
+    dest = dest || {};
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < sources.length; i++) {
+      const source = sources[i];
+      if (source) {
+        for (const prop in source) {
+          if (
+            source.hasOwnProperty(prop) &&
+            typeof source[prop] !== 'undefined' &&
+            (overwrite || dest.hasOwnProperty(prop) === false)
+          ) {
+            dest[prop] = source[prop];
+          }
+        }
+      }
+    }
+    return dest;
   }
 }
