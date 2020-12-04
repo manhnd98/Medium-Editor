@@ -1,4 +1,4 @@
-import { Browser } from '../models/browser.enum';
+import { Browser } from 'src/shared/models/browser.model';
 
 const isInternetExplorer = () => {
   return (

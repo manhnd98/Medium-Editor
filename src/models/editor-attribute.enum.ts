@@ -1,4 +1,0 @@
-export enum MediumEditorAttribute {
-  MEDIUM_EDITOR_ELEMENT = 'MEDIUM-EDITOR-ELEMENT',
-  MEDIUM_EDITOR_ID = 'MEDIUM-EDITOR-ID'
-}
