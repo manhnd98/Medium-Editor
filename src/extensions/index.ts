@@ -1,1 +1,1 @@
-export * from './core.extensions';
+export * from './core.extension';

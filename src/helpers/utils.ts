@@ -1,3 +1,4 @@
+import { IEditorOptions } from 'src/shared/models/medium-editor.model';
 import { Browser } from '../shared/models/browser.model';
 
 export class Utils {
@@ -121,5 +122,32 @@ export class Utils {
       }
     }
     return dest;
+  }
+
+  /**
+   *
+   * @param document : Document element
+   * @param tagName : Element tagName or nodeName
+   * @param content : HTML element or string to append as child element
+   * @param classList: Class name to append to new element
+   */
+  createElement(
+    document: Document,
+    tagName: string,
+    content: string | HTMLElement,
+    className?: string
+  ): HTMLElement {
+    const element = document.createElement(tagName);
+    if (this.isElement(content)) {
+      element.appendChild(content as HTMLElement);
+    } else {
+      element.innerHTML = content as string;
+    }
+
+    if (className) {
+      element.className += element.className + className;
+    }
+
+    return element;
   }
 }

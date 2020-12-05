@@ -3,8 +3,6 @@ import './polyfills';
 import './extensions';
 import { autoInjectable, container, inject, injectable, InjectionToken } from 'tsyringe';
 import { Editor } from './main';
-
-import { MediumInjectToken } from './editor.constant';
 import { EditorParam, IEditorOptions, IEditorSelector } from './shared/models/medium-editor.model';
 
 export class MediumEditor {

@@ -14,5 +14,11 @@ export const DefaultConfig: IEditorOptions = {
   ownerDocument: document,
   targetBlank: false,
   extensions: [],
-  spellcheck: false
+  spellcheck: false,
+  placeholder: {
+    title: 'Title',
+    body: 'Tell your story...',
+    image: 'Type caption for image (optional)',
+    media: 'Type caption for embed (optional)'
+  }
 };
