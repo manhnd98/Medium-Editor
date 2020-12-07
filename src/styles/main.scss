@@ -1,13 +1,67 @@
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "tailwindcss/components";
+@import './default.scss';
+@import './paragraph.scss';
+@import './title.scss';
 
-@import "tailwindcss/utilities";
+.medium-editor-element {
+  position: relative;
+  outline: 0;
+  word-break: break-word;
+  margin-bottom: 50px;
+  margin-top: 3px;
 
-.ok {
-  display: inline;
-}
+  &:before,
+  &:after {
+    display: table;
+    content: ' ';
+  }
 
-.manhnd {
-  display: flex;
+  .section--first {
+    margin-top: 20px;
+    padding-top: 0;
+
+    .graf--leading {
+      --margin-top-multiplier: 0;
+      margin-top: 0;
+    }
+  }
+
+  .section--last {
+    padding-bottom: 5px;
+  }
+
+  > section {
+    position: relative;
+    clear: both;
+    width: 100%;
+
+    hr.section-divider {
+      margin-top: 52px;
+      margin-bottom: 42px;
+    }
+
+    hr.section-divider {
+      display: block;
+      border: 0;
+      text-align: center;
+      overflow: visible;
+    }
+
+    &:first-child > .section-divider {
+      display: none;
+    }
+
+    .section-inner {
+      position: relative;
+      max-width: 740px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
 }

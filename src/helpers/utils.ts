@@ -125,7 +125,7 @@ export class Utils {
   }
 
   /**
-   *
+   * Shorter way to create a element with content and class
    * @param document : Document element
    * @param tagName : Element tagName or nodeName
    * @param content : HTML element or string to append as child element
@@ -149,5 +149,98 @@ export class Utils {
     }
 
     return element;
+  }
+
+  /**
+   * Section divider is a element to separate between section
+   * @param document: HTML Document
+   */
+  createSectionDivider(document: Document) {
+    const hr = this.createElement(document, 'hr', '', 'section-divider');
+    return this.createElement(document, 'div', hr, 'section-divider');
+  }
+
+  /**
+   * Check element is a editor element
+   */
+  isMediumEditorElement(element: HTMLElement | any) {
+    return element && element.getAttribute && !!element.getAttribute('data-medium-editor-element');
+  }
+
+  // http://stackoverflow.com/questions/6690752/insert-html-at-caret-in-a-contenteditable-div
+  insertHTMLCommand(doc: Document, html: string) {
+    debugger;
+    // tslint:disable-next-line: one-variable-per-declaration
+    let selection, range, el, fragment, node, lastNode, toReplace;
+    let res = false;
+
+    /* Edge's implementation of insertHTML is just buggy right now:
+     * - Doesn't allow leading white space at the beginning of an element
+     * - Found a case when a <font size="2"> tag was inserted when calling alignCenter inside a blockquote
+     *
+     * There are likely other bugs, these are just the ones we found so far.
+     * For now, let's just use the same fallback we did for IE
+     */
+    if (!this.isEdge() && doc.queryCommandSupported('insertHTML')) {
+      try {
+        return doc.execCommand.apply(doc, ['insertHTML', false, html]);
+      } catch (ignore) {}
+    }
+
+    selection = doc.getSelection();
+    if (selection?.rangeCount) {
+      range = selection.getRangeAt(0);
+      toReplace = range.commonAncestorContainer;
+
+      // https://github.com/yabwe/medium-editor/issues/748
+      // If the selection is an empty editor element, create a temporary text node inside of the editor
+      // and select it so that we don't delete the editor element
+      if (this.isMediumEditorElement(toReplace) && !toReplace.firstChild) {
+        range.selectNode(toReplace.appendChild(doc.createTextNode('')));
+      } else if (
+        (toReplace.nodeType === 3 &&
+          range.startOffset === 0 &&
+          range.endOffset === toReplace.nodeValue?.length) ||
+        (toReplace.nodeType !== 3 && (toReplace as any).innerHTML === range.toString())
+      ) {
+        // Ensure range covers maximum amount of nodes as possible
+        // By moving up the DOM and selecting ancestors whose only child is the range
+        while (
+          this.isMediumEditorElement(toReplace) &&
+          toReplace.parentNode &&
+          toReplace.parentNode.childNodes.length === 1 &&
+          this.isMediumEditorElement(toReplace.parentNode)
+        ) {
+          toReplace = toReplace.parentNode;
+        }
+        range.selectNode(toReplace);
+      }
+      range.deleteContents();
+
+      el = doc.createElement('div');
+      el.innerHTML = html;
+      fragment = doc.createDocumentFragment();
+      while (el.firstChild) {
+        node = el.firstChild;
+        lastNode = fragment.appendChild(node);
+      }
+      range.insertNode(fragment);
+
+      // Preserve the selection:
+      if (lastNode) {
+        range = range.cloneRange();
+        range.setStartAfter(lastNode);
+        range.collapse(true);
+        // MediumEditor.selection.selectRange(doc, range);
+      }
+      res = true;
+    }
+
+    // https://github.com/yabwe/medium-editor/issues/992
+    // If we're monitoring calls to execCommand, notify listeners as if a real call had happened
+    // if (doc.execCommand.callListeners) {
+    //   doc.execCommand.callListeners(ecArgs, res);
+    // }
+    return res;
   }
 }

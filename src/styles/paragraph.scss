@@ -1,0 +1,29 @@
+.medium-editor-element {
+  .graf--p {
+    margin-bottom: 0;
+  }
+
+  .graf--p {
+    --x-height-multiplier: 0.375;
+    --baseline-multiplier: 0.17;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    letter-spacing: 0.01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -0.003em;
+  }
+
+  .graf--p {
+    margin-top: 38px;
+  }
+
+  .graf--p.graf-after--h3 {
+    margin-top: 8px;
+  }
+
+  .graf--title + .graf--p {
+    margin-top: 10px;
+  }
+}

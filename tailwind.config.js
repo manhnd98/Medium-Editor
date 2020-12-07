@@ -260,6 +260,9 @@ module.exports = {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"'
+      ],
+      title: [
+        "Lucida Grande","Lucida Sans Unicode","Lucida Sans","Geneva,Arial","sans-serif"
       ]
     },
     fontSize: {

@@ -163,6 +163,8 @@ export class Editor {
       // TODO: Merge data-medium-editor-element and medium-editor-index attributes for 6.0.0
       // medium-editor-index is not named correctly anymore and can be re-purposed to signify
       // whether the element has been initialized or not
+
+      container.register(InjectToken.EDITOR_ID, { useValue: elementId });
       element.setAttribute(MediumEditorAttribute.MEDIUM_EDITOR_ID, elementId);
     }
 
@@ -233,7 +235,7 @@ export class Editor {
    * Init extensions
    */
   initExtensions(): void {
-    const defaultExtensions = ['core'];
+    const defaultExtensions = ['core', 'placeholder'];
     this.extensions = ExtensionsContainer.getAllExtensions();
     const coreOption = this.mergeOptions(this.options, {
       contentWindow: this.window,
@@ -241,7 +243,7 @@ export class Editor {
     });
     defaultExtensions.forEach((extensionName) => {
       const extensionConstructor = this.extensions[extensionName];
-      container.register(InjectToken.OPTION_PREFIX + extensionName, {useValue: coreOption});
+      container.register(InjectToken.OPTION_PREFIX + extensionName, { useValue: coreOption });
       container.resolve(extensionConstructor);
     });
 
