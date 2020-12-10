@@ -14,15 +14,11 @@ import { Utils } from '../helpers/utils';
  * Handle placeholder events
  */
 export class PlaceholderExtension extends Extension {
-  /**
-   * Document keydown
-   */
-  keydown$: Observable<KeyboardEvent>;
 
   /**
-   * Editor keydown
+   * Editor key printable
    */
-  editorKeydown$: Observable<KeyboardEvent>;
+  editorKeyPrint$: Observable<KeyboardEvent>;
 
   constructor(
     @inject(InjectToken.OPTION_PREFIX + 'placeholder') private otps: IEditorOptions,
@@ -31,14 +27,13 @@ export class PlaceholderExtension extends Extension {
     private utils: Utils
   ) {
     super(otps);
-    this.keydown$ = keypressService.keydown$;
-    this.editorKeydown$ = keypressService.editorKeydown$;
+    this.editorKeyPrint$ = keypressService.editorKeyPrint$;
     this.init();
     console.log('placeholder');
   }
 
   init() {
-    this.editorKeydown$.subscribe((event) => {
+    this.editorKeyPrint$.subscribe((event) => {
       this.onPlaceholderKeydown();
     });
   }
