@@ -1,6 +1,7 @@
 {
     "extends": "tslint:recommended",
     "rules": {
+      "no-unused-variable": true,
       "no-string-literal": false,
       "align": {
         "options": [

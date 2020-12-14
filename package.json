@@ -10,7 +10,8 @@
     "build:prod": "webpack --mode=production",
     "dev": "webpack serve --mode=development --watch",
     "test": "jest --env=jsdom",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "generate-icons": "svg-to-ts"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "style-loader": "^2.0.0",
+    "svg-to-ts": "^6.0.0",
     "tailwindcss": "^1.9.6",
     "ts-jest": "^26.4.3",
     "ts-loader": "^8.0.7",
@@ -51,8 +53,29 @@
   },
   "dependencies": {
     "rxjs": "^6.6.3",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
     "tslint": "^6.1.3",
     "tsyringe": "^4.4.0",
     "uuid": "^8.3.1"
+  },
+  "svg-to-ts": {
+    "conversionType": "constants",
+    "srcFiles": [
+      "./src/shared/svg/*.svg"
+    ],
+    "outputDirectory": "./src/shared/models",
+    "interfaceName": "EditorIcon",
+    "typeName": "editor",
+    "prefix": "editor",
+    "svgoConfig": {
+      "plugins": [
+        {
+          "cleanupAttrs": true
+        }
+      ]
+    },
+    "fileName": "icon.model",
+    "additionalModelFile": "./src/shared/models",
+    "compileSources": true
   }
 }

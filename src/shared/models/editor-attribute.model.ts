@@ -39,5 +39,7 @@ export enum EditorClass {
 
   SECTION = 'section',
 
-  DEFAULT_VALUE = 'defaultValue'
+  DEFAULT_VALUE = 'defaultValue',
+
+  TOOLBAR = 'highlightMenu'
 }

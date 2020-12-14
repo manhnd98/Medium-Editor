@@ -12,11 +12,16 @@ export class KeypressService {
   keydown$!: Observable<KeyboardEvent>;
 
   /**
+   * Observable listen event keydown on document
+   */
+  keypress$!: Observable<KeyboardEvent>;
+
+  /**
    * Observable listen event keydown on editor DOM
    */
   editorKeydown$!: Observable<KeyboardEvent>;
 
-  editorKeyPrint$!: Observable<KeyboardEvent>;
+  editorKeypress$!: Observable<KeyboardEvent>;
 
   editorElement: HTMLElement | null;
   constructor(@inject(InjectToken.EDITOR_ID) private editorId: string) {
@@ -31,6 +36,7 @@ export class KeypressService {
    */
   listenEvent() {
     this.keydown$ = fromEvent(document, 'keydown') as Observable<KeyboardEvent>;
+    this.keypress$ = fromEvent(document, 'keypress') as Observable<KeyboardEvent>;
 
     /**
      * Get all keydown in editor
@@ -43,21 +49,9 @@ export class KeypressService {
     /**
      * Get only printable key
      */
-    this.editorKeyPrint$ = this.editorKeydown$.pipe(
-      filter((event) => {
-        const keycode = event.keyCode;
-
-        const valid =
-          (keycode > 47 && keycode < 58) || // number keys
-          keycode == 32 ||
-          keycode == 13 || // spacebar & return key(s) (if you want to allow carriage returns)
-          (keycode > 64 && keycode < 91) || // letter keys
-          (keycode > 95 && keycode < 112) || // numpad keys
-          (keycode > 185 && keycode < 193) || // ;=,-./` (in order)
-          (keycode > 218 && keycode < 223); // [\]' (in order)
-
-        return valid;
-      })
-    );
+    this.editorKeypress$ = fromEvent(
+      this.editorElement as HTMLElement,
+      'keypress'
+    ) as Observable<KeyboardEvent>;
   }
 }

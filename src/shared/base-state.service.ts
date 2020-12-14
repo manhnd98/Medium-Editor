@@ -8,7 +8,7 @@ export class BaseStateService<T> {
     this.state$ = new BehaviorSubject<T>(initialState);
   }
 
-  protected get state(): T {
+  public get state(): T {
     return this.state$.getValue();
   }
 

@@ -5,8 +5,9 @@ import { inject, injectable } from 'tsyringe';
 import { KeypressService } from '../shared';
 import { Observable } from 'rxjs';
 import { SelectionHelper } from '../helpers/selection';
-import { EditorClass } from '../shared/models/editor-attribute.model';
+import { EditorClass, MediumEditorAttribute } from '@model/editor-attribute.model';
 import { Utils } from '../helpers/utils';
+import { SelectEventService } from '@state/ui/select.service';
 
 @ExtensionsContainer.register('placeholder')
 @injectable()
@@ -14,41 +15,61 @@ import { Utils } from '../helpers/utils';
  * Handle placeholder events
  */
 export class PlaceholderExtension extends Extension {
+  /**
+   * Document keypress
+   */
+  keypress$: Observable<KeyboardEvent>;
 
   /**
-   * Editor key printable
+   * User click on element in editor DOM
    */
-  editorKeyPrint$: Observable<KeyboardEvent>;
+  editorClick$: Observable<Event>;
 
   constructor(
     @inject(InjectToken.OPTION_PREFIX + 'placeholder') private otps: IEditorOptions,
-    private keypressService: KeypressService,
+    keypressService: KeypressService,
+    selectService: SelectEventService,
     private selection: SelectionHelper,
     private utils: Utils
   ) {
     super(otps);
-    this.editorKeyPrint$ = keypressService.editorKeyPrint$;
+
+    this.keypress$ = keypressService.keypress$;
+    this.editorClick$ = selectService.editorClick$;
+    keypressService.keydown$.subscribe(event => console.log(event));
+
     this.init();
-    console.log('placeholder');
   }
 
   init() {
-    this.editorKeyPrint$.subscribe((event) => {
-      this.onPlaceholderKeydown();
-    });
+    this.keypress$.subscribe((event) => this.onPlaceholderKeydown(event));
+    this.editorClick$.subscribe((event) => this.onPlaceholderClick(event));
   }
 
   /**
    * When user type key on placeholder, we will remove placeholder and start typing
+   * We need to listen to document event keydown instead of element keydown to solve issuse
+   * https://github.com/manhnd98/Medium-Editor/issues/2
    */
-  onPlaceholderKeydown() {
+  onPlaceholderKeydown(event: Event) {
     const element = this.selection.getSelectionStart(this.ownerDocument);
-    /**
-     * element is contain default value;
-     */
+
+    // Check is default element
     if (element.classList.contains(EditorClass.DEFAULT_VALUE)) {
       const parentElement = element.parentElement;
       parentElement?.removeChild(element);
     }
+  }
+
+  /**
+   * Handle event when user click on placeholder element
+   */
+  onPlaceholderClick(event: Event) {
+    // const target = event.target as HTMLElement;
+    // if (target.className.indexOf(EditorClass.DEFAULT_VALUE) > -1) {
+    //   event.stopPropagation();
+    //   event.preventDefault();
+    //   this.selection.moveCursor(this.ownerDocument, target, 0);
+    // }
   }
 }

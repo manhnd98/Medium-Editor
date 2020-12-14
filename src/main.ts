@@ -1,5 +1,4 @@
 import { Utils } from './helpers/utils';
-import { DefaultConfig } from './config/default';
 import { Events } from './helpers/events';
 import { container, inject, injectable } from 'tsyringe';
 import { InjectToken } from './editor.constant';
@@ -12,6 +11,7 @@ import {
 import { ExtensionsContainer, IExtensionsContainer } from './shared/models/extensions.model';
 import { MediumEditorAttribute } from './shared/models/editor-attribute.model';
 import { v4 } from 'uuid';
+import { OptionService } from '@state/data/option.service';
 
 @injectable()
 export class Editor {
@@ -48,7 +48,8 @@ export class Editor {
   constructor(
     @inject(EditorParam) private editorParam: EditorParam,
     private utils: Utils,
-    private event: Events
+    private event: Events,
+    private optionService: OptionService
   ) {
     /**
      * If editor is running on server side rendering
@@ -61,9 +62,12 @@ export class Editor {
     }
 
     this.document = document;
+
+    container.register(InjectToken.DOCUMENT, { useValue: document });
+
     this.window = window;
 
-    this.options = this.mergeOptions(DefaultConfig, editorParam.otps);
+    this.options = this.optionService.updateOption(editorParam.otps);
 
     if (!this.options.elementsContainer) {
       this.options.elementsContainer = this.options.ownerDocument?.body;
@@ -168,6 +172,8 @@ export class Editor {
       element.setAttribute(MediumEditorAttribute.MEDIUM_EDITOR_ID, elementId);
     }
 
+    container.register(InjectToken.EDITOR, { useValue: element });
+
     return element;
   }
 
@@ -235,7 +241,7 @@ export class Editor {
    * Init extensions
    */
   initExtensions(): void {
-    const defaultExtensions = ['core', 'placeholder'];
+    const defaultExtensions = ['core', 'placeholder', 'toolbar'];
     this.extensions = ExtensionsContainer.getAllExtensions();
     const coreOption = this.mergeOptions(this.options, {
       contentWindow: this.window,

@@ -169,7 +169,6 @@ export class Utils {
 
   // http://stackoverflow.com/questions/6690752/insert-html-at-caret-in-a-contenteditable-div
   insertHTMLCommand(doc: Document, html: string) {
-    debugger;
     // tslint:disable-next-line: one-variable-per-declaration
     let selection, range, el, fragment, node, lastNode, toReplace;
     let res = false;
@@ -242,5 +241,23 @@ export class Utils {
     //   doc.execCommand.callListeners(ecArgs, res);
     // }
     return res;
+  }
+
+  /**
+   * Create placeholder for editor
+   * @param ownerDocument : Document
+   * @param value : content of placeholder
+   */
+  createPlaceholder(ownerDocument: Document, value: string) {
+    const span = this.createElement(
+      ownerDocument,
+      'span',
+      value,
+      'defaultValue defaultValue--root'
+    );
+
+    const br = ownerDocument.createElement('br');
+
+    return { span, br };
   }
 }

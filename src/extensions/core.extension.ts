@@ -1,5 +1,5 @@
 import { Utils } from '../helpers/utils';
-import { autoInjectable, inject, injectable } from 'tsyringe';
+import { autoInjectable, delay, inject, injectable } from 'tsyringe';
 import {
   Extension,
   ExtensionsContainer,
@@ -8,6 +8,7 @@ import {
 import { InjectToken } from '../editor.constant';
 import { IEditorOptions } from '../shared/models/medium-editor.model';
 import { EditorClass, MediumEditorAttribute } from '../shared/models/editor-attribute.model';
+import { PlaceholderExtension } from '.';
 
 @ExtensionsContainer.register('core')
 @injectable()
@@ -51,7 +52,7 @@ export class CoreExtension extends Extension {
 
     if (isFirst) {
       // Create H3 title element
-      const { span, br } = this.createDefaultValueElement(this.option.placeholder.title);
+      const { span, br } = this.utils.createPlaceholder(this.ownerDocument, this.option.placeholder.title);
       const h3 = this.utils.createElement(
         this.ownerDocument,
         'h3',
@@ -65,7 +66,7 @@ export class CoreExtension extends Extension {
       innerSection.appendChild(h3);
     }
     // const section = this.utils.createElement(this.ownerDocument, 'section')
-    const defaultP = this.createDefaultValueElement(this.option.placeholder.body);
+    const defaultP = this.utils.createPlaceholder(this.ownerDocument, this.option.placeholder.body);
     const p = this.utils.createElement(this.ownerDocument, 'p', defaultP.span, EditorClass.P);
     p.appendChild(defaultP.br);
 
@@ -95,18 +96,5 @@ export class CoreExtension extends Extension {
     section.appendChild(sectionContent);
 
     return section;
-  }
-
-  createDefaultValueElement(value: string) {
-    const span = this.utils.createElement(
-      this.ownerDocument,
-      'span',
-      value,
-      'defaultValue defaultValue--root'
-    );
-
-    const br = this.ownerDocument.createElement('br');
-
-    return { span, br };
   }
 }

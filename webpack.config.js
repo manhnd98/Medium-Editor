@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devMode = process.env["mode"] === "development" ? true : false;
 
@@ -58,6 +59,7 @@ module.exports = {
     ],
   },
   resolve: {
+    plugins: [new TsconfigPathsPlugin({/* options: see below */})],
     extensions: [".ts", ".js", ".scss"],
   },
   output: {

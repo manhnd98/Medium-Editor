@@ -4,6 +4,7 @@ import './extensions';
 import { autoInjectable, container, inject, injectable, InjectionToken } from 'tsyringe';
 import { Editor } from './main';
 import { EditorParam, IEditorOptions, IEditorSelector } from './shared/models/medium-editor.model';
+import { OptionService } from '@state/data/option.service';
 
 export class MediumEditor {
   editor: Editor;
