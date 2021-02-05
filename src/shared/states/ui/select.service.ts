@@ -14,6 +14,8 @@ export class SelectEventService {
    */
   editorClick$: Observable<Event>;
 
+  editorMouseup$: Observable<Event>;
+  editorMouseDown$: Observable<Event>;
   constructor(
     @inject(InjectToken.EDITOR) private editor: HTMLElement,
     @inject(InjectToken.DOCUMENT) private document: Document
@@ -21,5 +23,7 @@ export class SelectEventService {
     this.click$ = fromEvent(document, 'click');
 
     this.editorClick$ = fromEvent(editor, 'click');
+    this.editorMouseup$ = fromEvent(editor, 'mouseup');
+    this.editorMouseDown$ = fromEvent(editor, 'mousedown');
   }
 }

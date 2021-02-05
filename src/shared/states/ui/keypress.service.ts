@@ -23,6 +23,10 @@ export class KeypressService {
 
   editorKeypress$!: Observable<KeyboardEvent>;
 
+  editorFocus$!: Observable<Event>;
+
+  editorBlur$!: Observable<Event>;
+
   editorElement: HTMLElement | null;
   constructor(@inject(InjectToken.EDITOR_ID) private editorId: string) {
     this.editorElement = document.querySelector(
@@ -37,14 +41,9 @@ export class KeypressService {
   listenEvent() {
     this.keydown$ = fromEvent(document, 'keydown') as Observable<KeyboardEvent>;
     this.keypress$ = fromEvent(document, 'keypress') as Observable<KeyboardEvent>;
-
-    /**
-     * Get all keydown in editor
-     */
-    this.editorKeydown$ = fromEvent(
-      this.editorElement as HTMLElement,
-      'keydown'
-    ) as Observable<KeyboardEvent>;
+    this.editorFocus$ = fromEvent(this.editorElement as HTMLElement, 'focus');
+    this.editorBlur$ = fromEvent(this.editorElement as HTMLElement, 'blur');
+    this.editorKeydown$ = fromEvent(this.editorElement as HTMLElement, 'keydown') as Observable<KeyboardEvent>;
 
     /**
      * Get only printable key

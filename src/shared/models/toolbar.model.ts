@@ -47,3 +47,12 @@ export class ToolbarButton implements IToolbarButton {
     public separator = false
   ) {}
 }
+
+
+export interface IToolbarState {
+  isDisplay: boolean;
+}
+
+export interface IToolbarOption {
+  selector: string | HTMLElement;
+}

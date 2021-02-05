@@ -1,13 +1,13 @@
-import { Utils } from '../helpers/utils';
+import { Utils } from '@helper/utils';
 import { autoInjectable, delay, inject, injectable } from 'tsyringe';
 import {
   Extension,
   ExtensionsContainer,
   IExtensionOption
-} from '../shared/models/extensions.model';
+} from '@model/extensions.model';
 import { InjectToken } from '../editor.constant';
-import { IEditorOptions } from '../shared/models/medium-editor.model';
-import { EditorClass, MediumEditorAttribute } from '../shared/models/editor-attribute.model';
+import { IEditorOptions } from '@model/medium-editor.model';
+import { EditorClass, MediumEditorAttribute } from '@model/editor-attribute.model';
 import { PlaceholderExtension } from '.';
 
 @ExtensionsContainer.register('core')

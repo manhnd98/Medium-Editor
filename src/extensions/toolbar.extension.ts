@@ -8,27 +8,76 @@ import {
   editorTitle
 } from '@model/icon.model';
 import { ButtonId, IToolbarButton, ToolbarButton } from '@model/toolbar.model';
+import { KeypressService } from '@state/ui/keypress.service';
 import { OptionService } from '@state/data/option.service';
+import { ToolbarStateService } from '@state/ui/toolbar.service';
 import { Utils } from 'src/helpers/utils';
 import { injectable } from 'tsyringe';
+import { Observable } from 'rxjs';
 
 @ExtensionsContainer.register('toolbar')
 @injectable()
 export class ToolbarExtension extends Extension {
-  /**
-   * Selector that contain toolbar element
-   */
-  selector?: string | HTMLElement;
-
   buttons: IToolbarButton[] = [];
+
+  /**
+   * toolbar element
+   */
+  toolbar!: HTMLElement;
+
+  extensionOption: any;
 
   /**
    * Extension init toolbar base on user options
    */
-  constructor(private optionService: OptionService, private utils: Utils) {
+  constructor(
+    private optionService: OptionService,
+    private utils: Utils,
+    private toolbarStateService: ToolbarStateService,
+    private keypressService: KeypressService
+  ) {
     super(optionService.state);
+    this.extensionOption = optionService.state.extensions.toolbar;
     this.initDefaultButtons();
-    this.createToolbar();
+    this.init();
+    this.attachEventListener();
+  }
+
+  init() {
+    const selector = this.extensionOption.selector;
+    let elementTemp: HTMLElement | null;
+    // if selector is a Html Node return its as array
+    if (this.utils.isElement(selector)) {
+      elementTemp = selector as HTMLElement;
+    } else {
+      elementTemp = this.ownerDocument.getElementById(selector);
+    }
+
+    if (!elementTemp) {
+      return this.createFloatToolbar();
+    }
+
+    this.appendActionButtons(elementTemp);
+
+    this.toolbar = elementTemp;
+  }
+
+  attachEventListener() {
+    this.toolbarStateService.display$.subscribe(isDisplay => {
+      if (isDisplay) {
+        return this.toolbar.classList.add('active');
+      }
+
+      return this.toolbar.classList.remove('active');
+    });
+
+    this.keypressService.editorFocus$.subscribe(event => {
+      console.log('focus');
+    });
+
+    this.keypressService.editorBlur$.subscribe(event => {
+      console.log('blur');
+    });
   }
 
   /**
@@ -44,10 +93,7 @@ export class ToolbarExtension extends Extension {
     this.buttons = [bold, italic, link, title, subTitle, quote];
   }
 
-  /**
-   * Create toolbar element and add into body
-   */
-  createToolbar() {
+  createFloatToolbar() {
     // Create arrow clip
     const arrow = this.utils.createElement(this.ownerDocument, 'span', '', 'highlightMenu-arrow');
     const arrowClip = this.utils.createElement(
@@ -59,9 +105,31 @@ export class ToolbarExtension extends Extension {
 
     // Create element list set of button
     const buttonSet = this.utils.createElement(this.ownerDocument, 'div', '', 'buttonSet');
-    this.buttons.forEach((button) => {
+    this.appendActionButtons(buttonSet);
+    const toolbarInner = this.utils.createElement(
+      this.ownerDocument,
+      'div',
+      buttonSet,
+      'highlightMenu-inner'
+    );
+    const toolbar = this.utils.createElement(
+      this.ownerDocument,
+      'div',
+      toolbarInner,
+      'highlightMenu'
+    );
+    toolbar.appendChild(arrowClip);
+
+    // append toolbar to document body
+    this.ownerDocument.body.appendChild(toolbar);
+
+    this.toolbar = toolbar;
+  }
+
+  appendActionButtons(container: HTMLElement) {
+    this.buttons.forEach(button => {
       const buttonElement = this.createToolbarButton(button);
-      buttonSet.appendChild(buttonElement);
+      container.appendChild(buttonElement);
 
       // Add separator on the right of button
       if (button.separator) {
@@ -71,17 +139,9 @@ export class ToolbarExtension extends Extension {
           '',
           'buttonSet-separator'
         );
-        buttonSet.appendChild(separator);
+        container.appendChild(separator);
       }
     });
-
-    const toolbarInner = this.utils.createElement(this.ownerDocument, 'div', buttonSet, 'highlightMenu-inner');
-    const toolbar = this.utils.createElement(this.ownerDocument, 'div', toolbarInner, 'highlightMenu');
-    toolbar.appendChild(arrowClip);
-
-    // append toolbar to document body
-    this.ownerDocument.body.appendChild(toolbar);
-    console.log(toolbar);
   }
 
   createToolbarButton(button: ToolbarButton): HTMLButtonElement {

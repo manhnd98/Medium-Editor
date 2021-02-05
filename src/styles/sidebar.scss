@@ -1,0 +1,124 @@
+.highlightMenu {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  z-index: 500;
+  -webkit-transition: none;
+  transition: none;
+  top: 0;
+  left: 0;
+
+  &.active {
+    display: inline-block;
+    visibility: visible;
+    transition: top 75ms ease-out, left 75ms ease-out;
+    animation: pop-upwards 180ms forwards linear;
+  }
+
+  .highlightMenu-arrowClip {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    clip: rect(10px 20px 20px 0);
+    margin-left: -10px;
+
+    .highlightMenu-arrow {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: #262625;
+      transform: rotate(45deg) scale(0.5);
+    }
+  }
+
+  .highlightMenu-inner {
+    position: relative;
+    background-image: linear-gradient(to bottom, rgba(49, 49, 47, 0.99), #262625);
+    background-repeat: repeat-x;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 10px;
+  }
+}
+
+.button {
+  position: relative;
+  background: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-rendering: auto;
+  user-select: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.button--highlightMenu {
+  display: inline-block;
+  border: 0;
+  color: #fff;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+
+  .svgIcon {
+    margin-top: -3px;
+    fill: #fff;
+    margin-left: -3px;
+    margin-right: -3px;
+  }
+}
+
+.buttonSet > .button,
+.buttonSet > .buttonSet-buttonWrapper {
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.buttonSet .button--highlightMenu {
+  height: 44px;
+  line-height: 46px;
+  margin: 0 8px;
+}
+
+.svgIcon {
+  display: inline-block;
+}
+
+.svgIcon--21px {
+  line-height: 21px;
+  height: 21px;
+}
+
+.button,
+.button .svgIcon {
+  -webkit-transition: 0.1s background-color, 0.1s border-color, 0.1s color, 0.1s fill;
+  transition: 0.1s background-color, 0.1s border-color, 0.1s color, 0.1s fill;
+}
+
+.button .svgIcon {
+  vertical-align: middle;
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.button--chromeless .svgIcon,
+.button--link .svgIcon {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.button--withSvgIcon .svgIcon {
+  top: -1px;
+  position: relative;
+}
+
+.buttonSet-separator {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1px;
+  margin: 0 6px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+}

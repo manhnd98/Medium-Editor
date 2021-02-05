@@ -1,11 +1,9 @@
-const plugin = require('tailwindcss/plugin')
-
 module.exports = {
-  prefix: '',
+  prefix: 'tw-',
   important: false,
   separator: ':',
   purge: {
-    enabled: true,
+    enabled: false,
     content: ['./src/**/*.ts', './public/**/*.html'],
     options: {
       whitelistPatterns: [
@@ -509,62 +507,5 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive']
   },
-  corePlugins: {},
-  plugins: [
-    plugin(function({addUtilities}) {
-
-      const borders = {
-        ".border-b-grey": {
-          "border-bottom": "1px solid #00000012"
-        },
-        ".border-ziggurat": {
-          "border": "1px solid rgb(185, 223, 223)"
-        },
-      };
-
-      const icon = {
-        ".align-icon-auto": {
-          "display": "flex",
-          "align-items": "center",
-          "justify-content": "center",
-          "width": "auto",
-          "height": "auto"
-        },
-
-        ".icon-black": {
-          "fill": "rgb(38, 38, 39)"
-        },
-
-        ".icon-inactive" : {
-          "fill": "rgb(137, 137, 137)",
-          "path": {
-            "stroke": "rgb(137, 137, 137)"
-          }
-        }
-      };
-
-      const boxShadow = {
-        ".shadow-right": {
-          "box-shadow": "rgba(0, 0, 0, 0.07) -1px 0px inset"
-        }
-      }
-
-      const scroll = {
-        ".scroll-content-root": {
-          "height": "100%",
-          "display": "flex",
-          "flex-direction": "column",
-          "overflow": "hidden"
-        }
-      }
-
-
-
-      addUtilities(borders);
-      addUtilities(icon);
-      addUtilities(boxShadow);
-      addUtilities(scroll);
-
-    })
-  ]
+  corePlugins: {}
 };

@@ -19,7 +19,9 @@ export interface IEditorOptions {
   /**
    * list user pass extension options
    */
-  extensions: any;
+  extensions: {
+    [extensionName: string]: any
+  };
   /**
    * is spellcheck enable on editor
    */

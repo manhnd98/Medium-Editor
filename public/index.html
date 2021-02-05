@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
+  <div id="toolbar-container">
+
+  </div>
   <div id="name" class="manhnd">
 
   </div>
@@ -14,7 +17,13 @@
   <script src="bundle.js">
   </script>
   <script>
-    const editor = new MediumEditor('name', {data: 'ok'});
+    const editor = new MediumEditor('name', {
+      extensions: {
+        toolbar: {
+          selector: 'toolbar-container'
+        }
+      }
+    });
   </script>
 </body>
 </html>
