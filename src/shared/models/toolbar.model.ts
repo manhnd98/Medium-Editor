@@ -38,6 +38,7 @@ export class ToolbarButton implements IToolbarButton {
    * @param style : button classes as a string
    * @param icon : svg icon as string
    * @param size : icon size in pixel. Default `21px`
+   * @param separator: icon to separate between button actions
    */
   constructor(
     public id: ButtonId,
@@ -47,7 +48,6 @@ export class ToolbarButton implements IToolbarButton {
     public separator = false
   ) {}
 }
-
 
 export interface IToolbarState {
   isDisplay: boolean;

@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0c01895-8f4b-4044-bca7-b9f064465a24" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extensions/core.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/core.extension.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/keycodes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/modifiers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/models/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/models/keycode.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extensions/placeholder.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/placeholder.extension.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extensions/toolbar.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/toolbar.extension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/models/medium-editor.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/models/medium-editor.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/models/dom-event.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/models/keycode.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/models/keypress.model.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/models/toolbar.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/models/toolbar.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/states/ui/keypress.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/ui/keypress.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/states/ui/select.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/ui/select.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/default.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/default.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/states/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/states/ui/keypress.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/ui/key.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +41,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -62,6 +66,13 @@
       <workItem from="1609771799615" duration="4845000" />
       <workItem from="1610031113928" duration="110000" />
       <workItem from="1612452251259" duration="2655000" />
+      <workItem from="1612623222383" duration="100000" />
+      <workItem from="1612951249965" duration="2545000" />
+      <workItem from="1613975081350" duration="2697000" />
+      <workItem from="1615127428621" duration="256000" />
+      <workItem from="1615128302384" duration="663000" />
+      <workItem from="1615132012992" duration="550000" />
+      <workItem from="1615394739988" duration="372000" />
     </task>
     <servers />
   </component>

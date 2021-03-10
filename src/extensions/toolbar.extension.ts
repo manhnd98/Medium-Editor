@@ -8,7 +8,7 @@ import {
   editorTitle
 } from '@model/icon.model';
 import { ButtonId, IToolbarButton, ToolbarButton } from '@model/toolbar.model';
-import { KeypressService } from '@state/ui/keypress.service';
+import { KeyService } from '@state/ui/key.service';
 import { OptionService } from '@state/data/option.service';
 import { ToolbarStateService } from '@state/ui/toolbar.service';
 import { Utils } from 'src/helpers/utils';
@@ -34,7 +34,7 @@ export class ToolbarExtension extends Extension {
     private optionService: OptionService,
     private utils: Utils,
     private toolbarStateService: ToolbarStateService,
-    private keypressService: KeypressService
+    private keypressService: KeyService
   ) {
     super(optionService.state);
     this.extensionOption = optionService.state.extensions.toolbar;
@@ -63,7 +63,7 @@ export class ToolbarExtension extends Extension {
   }
 
   attachEventListener() {
-    this.toolbarStateService.display$.subscribe(isDisplay => {
+    this.toolbarStateService.display$.subscribe((isDisplay) => {
       if (isDisplay) {
         return this.toolbar.classList.add('active');
       }
@@ -71,11 +71,11 @@ export class ToolbarExtension extends Extension {
       return this.toolbar.classList.remove('active');
     });
 
-    this.keypressService.editorFocus$.subscribe(event => {
+    this.keypressService.editorFocus$.subscribe((event) => {
       console.log('focus');
     });
 
-    this.keypressService.editorBlur$.subscribe(event => {
+    this.keypressService.editorBlur$.subscribe((event) => {
       console.log('blur');
     });
   }
@@ -127,7 +127,7 @@ export class ToolbarExtension extends Extension {
   }
 
   appendActionButtons(container: HTMLElement) {
-    this.buttons.forEach(button => {
+    this.buttons.forEach((button) => {
       const buttonElement = this.createToolbarButton(button);
       container.appendChild(buttonElement);
 

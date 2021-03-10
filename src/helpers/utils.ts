@@ -129,7 +129,7 @@ export class Utils {
    * @param document : Document element
    * @param tagName : Element tagName or nodeName
    * @param content : HTML element or string to append as child element
-   * @param classList: Class name to append to new element
+   * @param className: Class name to append to new element
    */
   createElement(
     document: Document,
