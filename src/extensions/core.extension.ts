@@ -3,17 +3,15 @@ import { autoInjectable, delay, inject, injectable } from 'tsyringe';
 import {
   Extension,
   ExtensionsContainer,
-  IExtensionOption
-} from '@model/extensions.model';
+  IEditorOptions,
+  EditorClass,
+  MediumEditorAttribute
+} from '@model';
 import { InjectToken } from '../editor.constant';
-import { IEditorOptions } from '@model/medium-editor.model';
-import { EditorClass, MediumEditorAttribute } from '@model/editor-attribute.model';
-import { PlaceholderExtension } from '.';
 
 @ExtensionsContainer.register('core')
 @injectable()
 export class CoreExtension extends Extension {
-
   /**
    * Editor option
    */
@@ -30,7 +28,9 @@ export class CoreExtension extends Extension {
   }
 
   init(): void {
-    const editor = this.ownerDocument.querySelector(`[${MediumEditorAttribute.MEDIUM_EDITOR_ID}="${this.editorId}"]`);
+    const editor = this.ownerDocument.querySelector(
+      `[${MediumEditorAttribute.MEDIUM_EDITOR_ID}="${this.editorId}"]`
+    );
     const section = this.createSection(true);
     editor?.appendChild(section);
   }
@@ -52,7 +52,10 @@ export class CoreExtension extends Extension {
 
     if (isFirst) {
       // Create H3 title element
-      const { span, br } = this.utils.createPlaceholder(this.ownerDocument, this.option.placeholder.title);
+      const { span, br } = this.utils.createPlaceholder(
+        this.ownerDocument,
+        this.option.placeholder.title
+      );
       const h3 = this.utils.createElement(
         this.ownerDocument,
         'h3',

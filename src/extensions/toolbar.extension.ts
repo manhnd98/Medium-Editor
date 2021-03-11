@@ -1,19 +1,21 @@
-import { Extension, ExtensionsContainer } from '@model/extensions.model';
 import {
   editorBold,
   editorItalic,
   editorLink,
   editorQuote,
   editorSubTitle,
-  editorTitle
-} from '@model/icon.model';
-import { ButtonId, IToolbarButton, ToolbarButton } from '@model/toolbar.model';
+  editorTitle,
+  Extension,
+  ExtensionsContainer,
+  ButtonId,
+  IToolbarButton,
+  ToolbarButton
+} from '@model';
 import { KeyService } from '@state/ui/key.service';
 import { OptionService } from '@state/data/option.service';
 import { ToolbarStateService } from '@state/ui/toolbar.service';
 import { Utils } from 'src/helpers/utils';
 import { injectable } from 'tsyringe';
-import { Observable } from 'rxjs';
 
 @ExtensionsContainer.register('toolbar')
 @injectable()

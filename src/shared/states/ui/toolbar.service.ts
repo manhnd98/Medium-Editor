@@ -1,4 +1,4 @@
-import { IToolbarState } from '@model/toolbar.model';
+import { IToolbarState } from '@model';
 import { BaseStateService } from 'src/shared/base-state.service';
 
 function initializeState(): IToolbarState {
@@ -11,7 +11,7 @@ export class ToolbarStateService extends BaseStateService<IToolbarState> {
   /**
    * Is toolbar display or hidden Observable
    */
-  display$ = this.select(state => state.isDisplay);
+  display$ = this.select((state) => state.isDisplay);
 
   constructor() {
     super(initializeState());

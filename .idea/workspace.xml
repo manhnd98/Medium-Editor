@@ -2,22 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0c01895-8f4b-4044-bca7-b9f064465a24" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/keycodes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/modifiers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/models/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/models/keycode.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/printable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extensions/core.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/core.extension.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extensions/placeholder.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/placeholder.extension.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extensions/toolbar.extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extensions/toolbar.extension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/models/dom-event.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/models/keycode.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/models/keypress.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/models/toolbar.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/models/toolbar.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/states/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/states/ui/keypress.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/ui/key.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/events.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/cdk/keycodes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/cdk/keycodes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/models/extensions.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/models/extensions.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/states/data/option.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/data/option.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/states/ui/toolbar.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/states/ui/toolbar.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
       <workItem from="1615127428621" duration="256000" />
       <workItem from="1615128302384" duration="663000" />
       <workItem from="1615132012992" duration="550000" />
-      <workItem from="1615394739988" duration="372000" />
+      <workItem from="1615394739988" duration="4535000" />
     </task>
     <servers />
   </component>

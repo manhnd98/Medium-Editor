@@ -66,7 +66,7 @@ export abstract class Extension {
    * Init default value for extension ex `ownerDocument` and `contentWindow`
    * @param otps: Extension option
    */
-  constructor(otps: IExtensionOption) {
+  protected constructor(otps: IExtensionOption) {
     const { ownerDocument, contentWindow } = otps;
     this.ownerDocument = ownerDocument;
     this.contentWindow = contentWindow;

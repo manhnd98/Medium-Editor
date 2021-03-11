@@ -1,5 +1,4 @@
 import { Utils } from './helpers/utils';
-import { Events } from './helpers/events';
 import { container, inject, injectable } from 'tsyringe';
 import { InjectToken } from './editor.constant';
 import {
@@ -48,7 +47,6 @@ export class Editor {
   constructor(
     @inject(EditorParam) private editorParam: EditorParam,
     private utils: Utils,
-    private event: Events,
     private optionService: OptionService
   ) {
     /**

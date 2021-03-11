@@ -1,4 +1,4 @@
-import { IEditorOptions } from '@model/medium-editor.model';
+import { IEditorOptions } from '@model';
 import { Utils } from 'src/helpers/utils';
 import { BaseStateService } from 'src/shared/base-state.service';
 import { singleton } from 'tsyringe';
@@ -34,12 +34,11 @@ export class OptionService extends BaseStateService<IEditorOptions> {
     super(initializeState());
   }
 
-
   /**
    * Update option and merge new option to current option
    * @param option : Medium editor option
    */
-  updateOption(option: Partial<IEditorOptions>){
+  updateOption(option: Partial<IEditorOptions>) {
     const currentOption = this.state;
     const newOption = this.utils.defaults({}, option, currentOption);
     this.setState(newOption);
